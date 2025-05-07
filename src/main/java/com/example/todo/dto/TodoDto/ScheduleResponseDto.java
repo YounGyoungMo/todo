@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 
+import java.time.LocalDateTime;
+
 @Getter
 @Builder
 @AllArgsConstructor
@@ -15,12 +17,17 @@ public class ScheduleResponseDto {
     private String title;
     private String contents;
 
+    private LocalDateTime createdAt;
+    private LocalDateTime updatedAt;
+
     public static ScheduleResponseDto from(Schedule schedule) {
         return ScheduleResponseDto.builder()
                 .userId(schedule.getUserId())
                 .id(schedule.getId())
                 .title(schedule.getTitle())
                 .contents(schedule.getContents())
+                .createdAt(schedule.getCreatedAt())
+                .updatedAt(schedule.getUpdatedAt())
                 .build();
     }
 
