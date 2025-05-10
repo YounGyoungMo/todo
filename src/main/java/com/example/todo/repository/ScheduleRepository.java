@@ -10,9 +10,9 @@ import java.util.Optional;
 
 public interface ScheduleRepository extends JpaRepository<Schedule,Long> {
 
-    List<Schedule> findByUserId(Long id);
+    List<Schedule> findByAuthorId(Long id);
     default List<Schedule> findByUserIdOrElse(Long id) {
-        List<Schedule> schedules = findByUserId(id);
+        List<Schedule> schedules = findByAuthorId(id);
         if (schedules.isEmpty()) {
             throw new CustomException(ErrorCode.CANT_FIND_SCHEDULE);
         }
@@ -25,8 +25,8 @@ public interface ScheduleRepository extends JpaRepository<Schedule,Long> {
         return findByUserIdAndId(userId, scheduleId).orElseThrow( () -> new CustomException(ErrorCode.CANT_FIND_THIS_SCHEDULE));
     }
 
+    Optional<Schedule> findById(Long userId, Long scheduleId);
 
-
-
+    Schedule findByIdOrElse(Long scheduleId);
 
 }
