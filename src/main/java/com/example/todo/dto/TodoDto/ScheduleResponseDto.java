@@ -16,6 +16,7 @@ public class ScheduleResponseDto {
     private Long id;
     private String title;
     private String contents;
+    private Long commentCount;
 
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
@@ -25,6 +26,7 @@ public class ScheduleResponseDto {
                 .userId(schedule.getAuthorId())
                 .id(schedule.getId())
                 .title(schedule.getTitle())
+                .commentCount(schedule.getCommentCount())
                 .contents(schedule.getContents())
                 .createdAt(schedule.getCreatedAt())
                 .updatedAt(schedule.getUpdatedAt())

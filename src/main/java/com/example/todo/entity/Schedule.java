@@ -26,18 +26,25 @@ public class Schedule extends BaseTimeEntity {
     @Column(nullable = false)
     private String contents;
 
+    private Long commentCount = 0L;
+
     public Schedule(Long authorId, String title, String contents) {
         this.authorId = authorId;
         this.title = title;
         this.contents = contents;
     }
 
-    public static Schedule of(Long userId, String title, String contents) {
-        return new Schedule(userId, title, contents);
+    public static Schedule of(Long authorId, String title, String contents) {
+        return new Schedule(authorId, title, contents);
     }
 
     public void update(String title, String contents) {
         this.title = title;
         this.contents = contents;
     }
+
+    public void incrementCommentCount() {
+        this.commentCount += 1;
+    }
+
 }

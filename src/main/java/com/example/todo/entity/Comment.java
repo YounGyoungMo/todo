@@ -29,6 +29,7 @@ public class Comment extends BaseTimeEntity {
         this.commentUserId = commentUserId;
         this.contents = content;
         this.schedule = schedule;
+        schedule.incrementCommentCount();
     }
 
     public void update(String contents) {
