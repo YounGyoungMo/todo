@@ -7,6 +7,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @EntityListeners(AuditingEntityListener.class)
 @Entity
 @Getter
@@ -27,6 +30,9 @@ public class Schedule extends BaseTimeEntity {
     private String contents;
 
     private Long commentCount = 0L;
+
+    @OneToMany(mappedBy = "schedule")
+    private List<Comment> commentList = new ArrayList<>();
 
     public Schedule(Long authorId, String title, String contents) {
         this.authorId = authorId;

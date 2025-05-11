@@ -2,6 +2,7 @@ package com.example.todo.controller;
 
 import com.example.todo.common.exception.enums.SuccessCode;
 import com.example.todo.common.response.ApiResponseDto;
+import com.example.todo.dto.TodoDto.ScheduleDetailResponseDto;
 import com.example.todo.dto.TodoDto.ScheduleRequestDto;
 import com.example.todo.dto.TodoDto.ScheduleResponseDto;
 import com.example.todo.service.schedule.ScheduleServiceImpl;
@@ -44,8 +45,11 @@ public class ScheduleController {
 
     // 단일 일정(상세) 조회
     @GetMapping("/{scheduleId}")
-    public ResponseEntity<ApiResponseDto<ScheduleResponseDto>> getSchedule(@PathVariable Long authorId, @PathVariable Long scheduleId){
-        ScheduleResponseDto responseDto = scheduleService.getSchedule(authorId, scheduleId);
+    public ResponseEntity<ApiResponseDto<ScheduleDetailResponseDto>> getSchedule(
+            @PathVariable Long authorId,
+            @PathVariable Long scheduleId
+    ){
+        ScheduleDetailResponseDto responseDto = scheduleService.getSchedule(authorId, scheduleId);
         return ResponseEntity.status(SuccessCode.SCHEDULE_SUCCESS.getHttpStatus())
                 .body(ApiResponseDto.success(SuccessCode.SCHEDULE_SUCCESS, responseDto));
     }

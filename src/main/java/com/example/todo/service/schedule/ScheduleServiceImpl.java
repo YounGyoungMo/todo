@@ -2,6 +2,7 @@ package com.example.todo.service.schedule;
 
 import com.example.todo.common.exception.base.CustomException;
 import com.example.todo.common.exception.enums.ErrorCode;
+import com.example.todo.dto.TodoDto.ScheduleDetailResponseDto;
 import com.example.todo.dto.TodoDto.ScheduleRequestDto;
 import com.example.todo.dto.TodoDto.ScheduleResponseDto;
 import com.example.todo.entity.Schedule;
@@ -38,9 +39,9 @@ public class ScheduleServiceImpl implements ScheduleService {
     }
 
     @Override
-    public ScheduleResponseDto getSchedule(Long authorId, Long scheduleId) {
+    public ScheduleDetailResponseDto getSchedule(Long authorId, Long scheduleId) {
         Schedule schedule = scheduleRepository.findByAuthorIdAndIdOrElse(authorId, scheduleId);
-        return ScheduleResponseDto.from(schedule);
+        return ScheduleDetailResponseDto.from(schedule);
     }
 
     @Override
