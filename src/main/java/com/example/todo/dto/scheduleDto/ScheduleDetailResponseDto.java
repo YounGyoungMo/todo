@@ -1,6 +1,6 @@
-package com.example.todo.dto.TodoDto;
+package com.example.todo.dto.scheduleDto;
 
-import com.example.todo.dto.CommentDto.CommentResponseDto;
+import com.example.todo.dto.commentDto.CommentResponseDto;
 import com.example.todo.entity.Schedule;
 import lombok.Builder;
 import lombok.Getter;

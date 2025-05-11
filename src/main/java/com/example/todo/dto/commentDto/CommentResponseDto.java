@@ -1,6 +1,7 @@
-package com.example.todo.dto.CommentDto;
-
+package com.example.todo.dto.commentDto;
+import com.example.todo.dto.replyDto.ReplyResponseDto;
 import com.example.todo.entity.Comment;
+import com.example.todo.entity.Reply;
 import com.example.todo.entity.Schedule;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -19,7 +20,10 @@ public class CommentResponseDto {
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 
+    private ReplyResponseDto reply;
+
     public static CommentResponseDto from(Schedule schedule, Comment comment) {
+        Reply reply = comment.getReply();
         return new CommentResponseDto(
                 schedule.getAuthorId(),
                 schedule.getId(),
@@ -27,7 +31,8 @@ public class CommentResponseDto {
                 comment.getId(),
                 comment.getContents(),
                 comment.getCreatedAt(),
-                comment.getUpdatedAt()
+                comment.getUpdatedAt(),
+                reply == null ? null : ReplyResponseDto.from(schedule, reply)
                 );
     }
 

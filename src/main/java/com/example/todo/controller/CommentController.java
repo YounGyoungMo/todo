@@ -2,18 +2,12 @@ package com.example.todo.controller;
 
 import com.example.todo.common.exception.enums.SuccessCode;
 import com.example.todo.common.response.ApiResponseDto;
-import com.example.todo.dto.CommentDto.CommentRequestDto;
-import com.example.todo.dto.CommentDto.CommentResponseDto;
-import com.example.todo.dto.TodoDto.ScheduleRequestDto;
-import com.example.todo.dto.TodoDto.ScheduleResponseDto;
+import com.example.todo.dto.commentDto.CommentRequestDto;
+import com.example.todo.dto.commentDto.CommentResponseDto;
 import com.example.todo.service.comment.CommentService;
-import com.example.todo.service.comment.CommentServiceImpl;
-import com.example.todo.service.schedule.ScheduleServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/comments")
@@ -64,7 +58,7 @@ public class CommentController {
 
     // 댓글 삭제
     @DeleteMapping
-    public ResponseEntity<ApiResponseDto<Void>> removeSchedule(
+    public ResponseEntity<ApiResponseDto<Void>> removeComment(
             @RequestParam Long scheduleId,
             @RequestParam Long commentUserId,
             @RequestParam Long commentId
@@ -73,4 +67,7 @@ public class CommentController {
         return ResponseEntity.status(SuccessCode.COMMENT_DELETE_SUCCESS.getHttpStatus())
                 .body(ApiResponseDto.success(SuccessCode.COMMENT_DELETE_SUCCESS, null));
     }
+
+
+
 }

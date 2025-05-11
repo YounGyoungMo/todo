@@ -1,8 +1,8 @@
 package com.example.todo.service.schedule;
 
-import com.example.todo.dto.TodoDto.ScheduleDetailResponseDto;
-import com.example.todo.dto.TodoDto.ScheduleRequestDto;
-import com.example.todo.dto.TodoDto.ScheduleResponseDto;
+import com.example.todo.dto.scheduleDto.ScheduleDetailResponseDto;
+import com.example.todo.dto.scheduleDto.ScheduleRequestDto;
+import com.example.todo.dto.scheduleDto.ScheduleResponseDto;
 
 import java.util.List;
 

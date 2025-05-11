@@ -1,8 +1,6 @@
 package com.example.todo.entity;
 
-import com.example.todo.dto.TodoDto.ScheduleResponseDto;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;

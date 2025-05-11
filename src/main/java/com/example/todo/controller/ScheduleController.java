@@ -2,9 +2,9 @@ package com.example.todo.controller;
 
 import com.example.todo.common.exception.enums.SuccessCode;
 import com.example.todo.common.response.ApiResponseDto;
-import com.example.todo.dto.TodoDto.ScheduleDetailResponseDto;
-import com.example.todo.dto.TodoDto.ScheduleRequestDto;
-import com.example.todo.dto.TodoDto.ScheduleResponseDto;
+import com.example.todo.dto.scheduleDto.ScheduleDetailResponseDto;
+import com.example.todo.dto.scheduleDto.ScheduleRequestDto;
+import com.example.todo.dto.scheduleDto.ScheduleResponseDto;
 import com.example.todo.service.schedule.ScheduleServiceImpl;
 import lombok.RequiredArgsConstructor;
 

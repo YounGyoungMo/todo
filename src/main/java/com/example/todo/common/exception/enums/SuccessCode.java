@@ -18,7 +18,12 @@ public enum SuccessCode {
     REPLY_COMMENT_CREATE_SUCCESS(HttpStatus.CREATED, "대댓글 작성이 성공적으로 처리되었습니다. "),
     COMMENT_SUCCESS(HttpStatus.OK, "해당 댓글이 성공적으로 조회되었습니다."),
     COMMENT_UPDATE_SUCCESS(HttpStatus.OK, "해당 댓글이 성공적으로 수정되었습니다." ),
-    COMMENT_DELETE_SUCCESS(HttpStatus.OK, "해당 댓글이 성공적으로 삭제되었습니다." )
+    COMMENT_DELETE_SUCCESS(HttpStatus.OK, "해당 댓글이 성공적으로 삭제되었습니다." ),
+    
+    // 대댓글 관련 성공 코드
+    REPLY_CREATE_SUCCESS(HttpStatus.OK, "해당 대댓글이 성공적으로 생성되었습니다."),
+    REPLY_UPDATE_SUCCESS(HttpStatus.OK, "해당 대댓글이 성공적으로 수정되었습니다." ),
+    REPLY_DELETE_SUCCESS(HttpStatus.OK, "해당 대댓글이 성공적으로 삭제되었습니다." ),
     ;
 
     private final HttpStatus httpStatus;

@@ -10,7 +10,7 @@ content-type: application/json
 ### 일정 전체 조회
 GET localhost:8080/authors/1/schedules
 
-### 일정 상세 조회
+### 일정 상세 조회 (댓글, 대댓글 같이 조회)
 GET localhost:8080/authors/1/schedules/1
 
 ### 일정 수정
@@ -47,6 +47,24 @@ content-type: application/json
 ### 댓글 삭제
 DELETE localhost:8080/comments?scheduleId=1&commentUserId=1&commentId=1
 
+### 대댓글 생성
+POST localhost:8080/replies?scheduleId=1&commentUserId=1&commentId=1
+content-type: application/json
+
+{
+  "contents": "reply_content"
+}
+
+### 대댓글 수정
+PUT localhost:8080/replies?scheduleId=1&commentId=1
+content-type: application/json
+
+{
+  "contents": "updated_reply_content"
+}
+
+### 대댓글 삭제
+DELETE localhost:8080/replies?scheduleId=1&commentId=1
 
 
 

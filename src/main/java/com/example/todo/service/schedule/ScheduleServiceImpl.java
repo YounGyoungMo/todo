@@ -2,10 +2,11 @@ package com.example.todo.service.schedule;
 
 import com.example.todo.common.exception.base.CustomException;
 import com.example.todo.common.exception.enums.ErrorCode;
-import com.example.todo.dto.TodoDto.ScheduleDetailResponseDto;
-import com.example.todo.dto.TodoDto.ScheduleRequestDto;
-import com.example.todo.dto.TodoDto.ScheduleResponseDto;
+import com.example.todo.dto.scheduleDto.ScheduleDetailResponseDto;
+import com.example.todo.dto.scheduleDto.ScheduleRequestDto;
+import com.example.todo.dto.scheduleDto.ScheduleResponseDto;
 import com.example.todo.entity.Schedule;
+import com.example.todo.repository.ReplyRepository;
 import com.example.todo.repository.ScheduleRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -20,6 +21,7 @@ import java.util.stream.Collectors;
 public class ScheduleServiceImpl implements ScheduleService {
 
     private final ScheduleRepository scheduleRepository;
+    private final ReplyRepository replyRepository;
 
     public ScheduleResponseDto createSchedule(ScheduleRequestDto requestDto, Long userId) {
 
@@ -31,6 +33,7 @@ public class ScheduleServiceImpl implements ScheduleService {
     }
 
     @Override
+    @Transactional (readOnly = true)
     public List<ScheduleResponseDto> getSchedules(Long authorId) {
         List<Schedule> schedules = scheduleRepository.findByAuthorIdOrElse(authorId);
         return schedules.stream()
@@ -39,6 +42,7 @@ public class ScheduleServiceImpl implements ScheduleService {
     }
 
     @Override
+    @Transactional (readOnly = true)
     public ScheduleDetailResponseDto getSchedule(Long authorId, Long scheduleId) {
         Schedule schedule = scheduleRepository.findByAuthorIdAndIdOrElse(authorId, scheduleId);
         return ScheduleDetailResponseDto.from(schedule);

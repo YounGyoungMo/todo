@@ -1,21 +1,22 @@
 package com.example.todo.entity;
 
+import com.fasterxml.jackson.databind.ser.Serializers;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 @Entity
 @Getter
-@Table(name = "comment")
+@Table(name = "reply")
 @NoArgsConstructor
-public class Comment extends BaseTimeEntity {
+
+public class Reply extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Long commentUserId;
+    private Long replyUserId;
 
     @Column(nullable = false)
     private String contents;
@@ -24,19 +25,19 @@ public class Comment extends BaseTimeEntity {
     @JoinColumn(name = "schedule_id")
     private Schedule schedule;
 
-    @Setter
-    @OneToOne(mappedBy = "parentComment")
-    private Reply reply;
+    @OneToOne
+    @JoinColumn(name = "comment_id")
+    private Comment parentComment;
 
-    public Comment(Long commentUserId, String content, Schedule schedule) {
-        this.commentUserId = commentUserId;
-        this.contents = content;
+    public Reply(Long replyUserId, String contents, Schedule schedule, Comment parentComment) {
+        this.replyUserId = replyUserId;
+        this.contents = contents;
         this.schedule = schedule;
+        this.parentComment = parentComment;
         schedule.incrementCommentCount();
     }
 
     public void update(String contents) {
         this.contents = contents;
     }
-
 }

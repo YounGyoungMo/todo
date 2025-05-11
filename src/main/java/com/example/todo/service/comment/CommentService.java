@@ -1,10 +1,8 @@
 package com.example.todo.service.comment;
 
-import com.example.todo.dto.CommentDto.CommentRequestDto;
-import com.example.todo.dto.CommentDto.CommentResponseDto;
-import com.example.todo.dto.TodoDto.ScheduleResponseDto;
+import com.example.todo.dto.commentDto.CommentRequestDto;
+import com.example.todo.dto.commentDto.CommentResponseDto;
 
-import java.util.List;
 
 public interface CommentService {
     CommentResponseDto createComment(Long authorId, Long scheduleId, Long commentUserId, CommentRequestDto commentRequestDto);
