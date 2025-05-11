@@ -11,7 +11,7 @@ import java.util.Optional;
 public interface ScheduleRepository extends JpaRepository<Schedule,Long> {
 
     List<Schedule> findByAuthorId(Long id);
-    default List<Schedule> findByUserIdOrElse(Long id) {
+    default List<Schedule> findByAuthorIdOrElse(Long id) {
         List<Schedule> schedules = findByAuthorId(id);
         if (schedules.isEmpty()) {
             throw new CustomException(ErrorCode.CANT_FIND_SCHEDULE);
@@ -19,14 +19,16 @@ public interface ScheduleRepository extends JpaRepository<Schedule,Long> {
         return schedules;
     }
 
-    Optional<Schedule> findByUserIdAndId(Long userId, Long scheduleId);
+    Optional<Schedule> findByAuthorIdAndId(Long authorId, Long scheduleId);
 
-    default Schedule findByUserIdAndIdOrElse(Long userId, Long scheduleId) {
-        return findByUserIdAndId(userId, scheduleId).orElseThrow( () -> new CustomException(ErrorCode.CANT_FIND_THIS_SCHEDULE));
+    default Schedule findByAuthorIdAndIdOrElse(Long authorId, Long scheduleId) {
+        return findByAuthorIdAndId(authorId, scheduleId).orElseThrow( () -> new CustomException(ErrorCode.CANT_FIND_THIS_SCHEDULE));
     }
 
-    Optional<Schedule> findById(Long userId, Long scheduleId);
+    Optional<Schedule> findById(Long id);
 
-    Schedule findByIdOrElse(Long scheduleId);
+    default Schedule findByIdOrElse(Long id) {
+        return findById(id).orElseThrow(()-> new CustomException(ErrorCode.CANT_FIND_THIS_SCHEDULE));
+    }
 
 }

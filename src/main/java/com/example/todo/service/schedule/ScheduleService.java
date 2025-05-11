@@ -1,4 +1,4 @@
-package com.example.todo.service;
+package com.example.todo.service.schedule;
 
 import com.example.todo.dto.TodoDto.ScheduleRequestDto;
 import com.example.todo.dto.TodoDto.ScheduleResponseDto;

@@ -22,7 +22,7 @@ public class ScheduleResponseDto {
 
     public static ScheduleResponseDto from(Schedule schedule) {
         return ScheduleResponseDto.builder()
-                .userId(schedule.getUserId())
+                .userId(schedule.getAuthorId())
                 .id(schedule.getId())
                 .title(schedule.getTitle())
                 .contents(schedule.getContents())

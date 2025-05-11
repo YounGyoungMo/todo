@@ -14,7 +14,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 @NoArgsConstructor
 public class Schedule extends BaseTimeEntity {
 
-    private Long userId;
+    private Long authorId;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,8 +26,8 @@ public class Schedule extends BaseTimeEntity {
     @Column(nullable = false)
     private String contents;
 
-    public Schedule(Long userId, String title, String contents) {
-        this.userId = userId;
+    public Schedule(Long authorId, String title, String contents) {
+        this.authorId = authorId;
         this.title = title;
         this.contents = contents;
     }

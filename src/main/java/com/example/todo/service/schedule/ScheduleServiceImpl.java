@@ -1,4 +1,4 @@
-package com.example.todo.service;
+package com.example.todo.service.schedule;
 
 import com.example.todo.common.exception.base.CustomException;
 import com.example.todo.common.exception.enums.ErrorCode;
@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -31,35 +30,34 @@ public class ScheduleServiceImpl implements ScheduleService {
     }
 
     @Override
-    public List<ScheduleResponseDto> getSchedules(Long userId) {
-        List<Schedule> schedules = scheduleRepository.findByUserIdOrElse(userId);
+    public List<ScheduleResponseDto> getSchedules(Long authorId) {
+        List<Schedule> schedules = scheduleRepository.findByAuthorIdOrElse(authorId);
         return schedules.stream()
                 .map(ScheduleResponseDto::from)
                 .collect(Collectors.toList());
     }
 
     @Override
-    public ScheduleResponseDto getSchedule(Long userId, Long scheduleId) {
-        Schedule schedule = scheduleRepository.findByUserIdAndIdOrElse(userId, scheduleId);
+    public ScheduleResponseDto getSchedule(Long authorId, Long scheduleId) {
+        Schedule schedule = scheduleRepository.findByAuthorIdAndIdOrElse(authorId, scheduleId);
         return ScheduleResponseDto.from(schedule);
     }
 
     @Override
-    public ScheduleResponseDto changeSchedule(Long userId, Long scheduleId, ScheduleRequestDto requestDto) {
+    public ScheduleResponseDto changeSchedule(Long authorId, Long scheduleId, ScheduleRequestDto requestDto) {
         if (requestDto.getTitle().isEmpty() || requestDto.getContents().isEmpty()) {
             throw new CustomException(ErrorCode.BAD_REQUEST);
         }
 
-        Schedule schedule = scheduleRepository.findByUserIdAndIdOrElse(userId, scheduleId);
+        Schedule schedule = scheduleRepository.findByAuthorIdAndIdOrElse(authorId, scheduleId);
         schedule.update(requestDto.getTitle(), requestDto.getContents());
         return ScheduleResponseDto.from(schedule);
     }
 
     @Override
-    public void removeSchedule(Long userId, Long scheduleId) {
-        Schedule schedule = scheduleRepository.findByUserIdAndIdOrElse(userId, scheduleId);
+    public void removeSchedule(Long authorId, Long scheduleId) {
+        Schedule schedule = scheduleRepository.findByAuthorIdAndIdOrElse(authorId, scheduleId);
         scheduleRepository.delete(schedule);
     }
-
 
 }
