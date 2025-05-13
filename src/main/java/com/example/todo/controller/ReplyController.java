@@ -41,7 +41,7 @@ public class ReplyController {
         ReplyResponseDto responseDto = replyService.changeReply(scheduleId, commentId, requestDto);
         return ResponseEntity.status(
                         SuccessCode.REPLY_UPDATE_SUCCESS.getHttpStatus())
-                .body(ApiResponseDto.success(SuccessCode.REPLY_CREATE_SUCCESS, responseDto)
+                .body(ApiResponseDto.success(SuccessCode.REPLY_UPDATE_SUCCESS, responseDto)
                 );
     }
 
@@ -51,7 +51,7 @@ public class ReplyController {
             @RequestParam Long commentId
     ) {
         replyService.removeReply(commentId);
-        return ResponseEntity.status(SuccessCode.COMMENT_DELETE_SUCCESS.getHttpStatus())
-                .body(ApiResponseDto.success(SuccessCode.COMMENT_DELETE_SUCCESS, null));
+        return ResponseEntity.status(SuccessCode.REPLY_DELETE_SUCCESS.getHttpStatus())
+                .body(ApiResponseDto.success(SuccessCode.REPLY_DELETE_SUCCESS, null));
     }
 }

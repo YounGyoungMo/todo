@@ -5,7 +5,10 @@ import com.example.todo.common.exception.enums.ErrorCode;
 import com.example.todo.dto.scheduleDto.ScheduleDetailResponseDto;
 import com.example.todo.dto.scheduleDto.ScheduleRequestDto;
 import com.example.todo.dto.scheduleDto.ScheduleResponseDto;
+import com.example.todo.entity.Comment;
+import com.example.todo.entity.Reply;
 import com.example.todo.entity.Schedule;
+import com.example.todo.repository.CommentRepository;
 import com.example.todo.repository.ReplyRepository;
 import com.example.todo.repository.ScheduleRepository;
 import lombok.AllArgsConstructor;
@@ -22,6 +25,7 @@ public class ScheduleServiceImpl implements ScheduleService {
 
     private final ScheduleRepository scheduleRepository;
     private final ReplyRepository replyRepository;
+    private final CommentRepository commentRepository;
 
     public ScheduleResponseDto createSchedule(ScheduleRequestDto requestDto, Long userId) {
 
@@ -62,6 +66,7 @@ public class ScheduleServiceImpl implements ScheduleService {
     @Override
     public void removeSchedule(Long authorId, Long scheduleId) {
         Schedule schedule = scheduleRepository.findByAuthorIdAndIdOrElse(authorId, scheduleId);
+
         scheduleRepository.delete(schedule);
     }
 

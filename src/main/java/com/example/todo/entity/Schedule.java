@@ -29,7 +29,7 @@ public class Schedule extends BaseTimeEntity {
 
     private Long commentCount = 0L;
 
-    @OneToMany(mappedBy = "schedule")
+    @OneToMany(mappedBy = "schedule", orphanRemoval = true, cascade = CascadeType.ALL )
     private List<Comment> commentList = new ArrayList<>();
 
     public Schedule(Long authorId, String title, String contents) {

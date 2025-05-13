@@ -25,7 +25,7 @@ public class Comment extends BaseTimeEntity {
     private Schedule schedule;
 
     @Setter
-    @OneToOne(mappedBy = "parentComment")
+    @OneToOne(mappedBy = "parentComment",orphanRemoval = true, cascade = CascadeType.ALL)
     private Reply reply;
 
     public Comment(Long commentUserId, String content, Schedule schedule) {

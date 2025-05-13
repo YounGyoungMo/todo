@@ -52,7 +52,6 @@ public class ReplyServiceImpl implements ReplyService {
     public void removeReply(Long commentId) {
         Reply reply = replyRepository.findByIdOrElseThrow(commentId);
 
-        //
         Comment parentComment = reply.getParentComment();
         if (parentComment != null) {
             parentComment.setReply(null);

@@ -9,16 +9,17 @@ import java.util.List;
 import java.util.Optional;
 
 public interface CommentRepository extends JpaRepository<Comment, Long> {
-    Optional<List<Comment>> findBySchedule_IdAndCommentUserId(Long scheduleId, Long commentUserId);
-
-    default List<Comment> findBySchedule_IdAndCommentUserIdOrElse(Long scheduleId, Long commentUserId) {
-        return findBySchedule_IdAndCommentUserId(scheduleId, commentUserId).orElseThrow(()-> new CustomException(ErrorCode.CANT_FIND_COMMENT));
-    }
 
     Optional<Comment> findBySchedule_IdAndCommentUserIdAndId(Long scheduleId, Long commentUserId, Long commentId);
 
     default Comment findBySchedule_IdAndCommentUserIdAndIdOrElse(Long scheduleId, Long commentUserId, Long commentId) {
         return findBySchedule_IdAndCommentUserIdAndId(scheduleId, commentUserId, commentId).orElseThrow(()-> new CustomException(ErrorCode.CANT_FIND_COMMENT));
+    }
+
+    Optional<List<Comment>> findBySchedule_Id(Long scheduleId);
+
+    default List<Comment> findBySchedule_IdOrElseThrow(Long scheduleId) {
+        return findBySchedule_Id(scheduleId).orElseThrow(()-> new CustomException(ErrorCode.CANT_FIND_COMMENT));
     }
 
 }
